@@ -1,0 +1,55 @@
+{% extends '../layout.html' %}
+{% block content %}
+<div class="content-section">
+    <table class="table table-striped table-bordered table-hovet">
+        <div class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Livros</th>
+            <th scope="col">Quantidade em Estoque</th>
+            <th scope="col">Reservar</th>
+            <th scope="col">Devolver</th>
+          </tr>
+        </div>
+        <div>
+          {% for fdsApp in inventories %}
+            <tr style='cursor: pointer; cursor: hand;'>
+              <th scope="row">{{ forloop.counter }}</th>
+              <th scope="row">{{ fdsApp.name }}</th>
+              <th scope="row">{{ fdsApp.quantity_in_stock }}</th>
+                 <th scope="row">  <a href="{% url 'reserve_book'  fdsApp.id %}" type="button"  style="width:140px; margin-left:10px;"
+                                        class="btn btn-dark" title="Reservar"> Reservar</a>   </th>
+
+                <th scope="row"> <a href="{% url 'return_book' fdsApp.id %}" type="button"  style="width:140px; margin-left:10px;"
+                                        class="btn btn-dark" title="Devolver"> Devolver</a> </th>
+            </tr>
+          {% endfor %}
+          </div>
+    </table>
+      <table class="table table-striped table-bordered table-hovet">
+          <div class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Computadores</th>
+              <th scope="col">Quantidade em Estoque</th>
+              <th scope="col">Reservar</th>
+              <th scope="col">Devolver</th>
+            </tr>
+          </div>
+          <div>
+            {% for computers in inventorypc %}
+              <tr style='cursor: pointer; cursor: hand;'>
+                <th scope="row">{{ forloop.counter }}</th>
+                <th scope="row">{{ computers.c_name }}</th>
+                <th scope="row">{{ computers.c_quantity_in_stock }}</th>
+                   <th scope="row">  <a href="{% url 'reserve_computer' computers.id %}" type="button"  style="width:140px; margin-left:10px;"
+                                        class="btn btn-dark" title="Reservar" id="reserve"> Reservar</a>   </th>
+
+                <th scope="row"> <a href="{% url 'free_compute' computers.id %}" type="button"  style="width:140px; margin-left:10px;"
+                                        class="btn btn-dark" title="Devolver" id="devolver"> Devolver</a> </th>
+              </tr>
+            {% endfor %}
+            </div>
+      </table>
+</div>
+{% endblock %}
